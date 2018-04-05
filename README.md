@@ -99,3 +99,32 @@ sudo launchctl load /Library/LaunchDaemons/com.network.alias.plist
 ```MySQL: root root```
 
 ```Linux: magento2 magento2```
+
+# FOR WINDOWS MACHINES
+
+#Installation
+1. Download docker 
+
+```
+You can download Docker for Windows installers from the Stable channel at https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
+
+If your system does not meet the requirements to run Docker for Windows, you can install Docker Toolbox, which uses Oracle Virtual Box instead of Hyper-V. https://docs.docker.com/toolbox/overview/
+```
+
+2. Running containers
+
+You will need the folder with the docker-composer.yml, before you can start you need to remove the folder db-> PROJECT_NAME/shared/db, and you need to edit the docker-composer.yml and remove the line for the db service:
+``` - "./shared/db:/var/lib/mysql" ``` 
+after that you can run the *Docker Quickstart Terminal* go to the folder and run:
+``` docker-compose up ```
+
+3. Setting database
+
+Open the Kitematic and create a new container, look for phpmyadmin from docker hub, on that container inside Kitematic, go to `Settings > Network` and select the PROJECT_NAME, clic on save and restart the container phpmyadmin
+You will need to create and import the databases
+to set the database into magento you need to edit the file `PROJECT_NAME/shared/webroot/app/etc/env.php` and change dbname by the name of your database, use mysql to import database instead phpmyadmin.
+
+``` 
+You must create the url aliases for the IP that docker gives you to run the apications
+```
+
